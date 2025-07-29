@@ -1,0 +1,101 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-table-log
+      comment: create-table-log
+      author: nicholasmeyers
+      changes:
+        - createTable:
+            tableName: log
+            columns:
+              - column:
+                  name: id
+                  type: uuid
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: timestamp
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: method
+                  type: varchar(6)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: path
+                  type: text
+                  constraints:
+                    nullable: false
+              - column:
+                  name: client_ip
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status_code
+                  type: varchar(3)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: duration_ms
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: user_agent
+                  type: text
+                  constraints:
+                    nullable: false
+              - column:
+                  name: host
+                  type: text
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: datetime
+                  constraints:
+                    nullable: false
+              - column:
+                  name: last_modified_date
+                  type: datetime
+                  constraints:
+                    nullable: false
+        - createIndex:
+            indexName: idx_log_method
+            tableName: log
+            columns:
+              - column:
+                  name: method
+        - createIndex:
+            indexName: idx_log_path
+            tableName: log
+            columns:
+              - column:
+                  name: path
+        - createIndex:
+            indexName: idx_log_client_ip
+            tableName: log
+            columns:
+              - column:
+                  name: client_ip
+        - createIndex:
+            indexName: idx_log_status_code
+            tableName: log
+            columns:
+              - column:
+                  name: status_code
+        - createIndex:
+            indexName: idx_log_user_agent
+            tableName: log
+            columns:
+              - column:
+                  name: user_agent
+        - createIndex:
+            indexName: idx_log_host
+            tableName: log
+            columns:
+              - column:
+                  name: host
