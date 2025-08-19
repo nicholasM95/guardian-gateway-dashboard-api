@@ -9,6 +9,8 @@ public class Log {
     private final Long timestamp;
     private final String method;
     private final String path;
+    private final String schema;
+    private final Long port;
     private final String clientIp;
     private final String statusCode;
     private final Long durationMs;
@@ -21,6 +23,8 @@ public class Log {
         this.timestamp = zonedDateTime.toInstant().getEpochSecond();
         this.method = logCreateRequest.method();
         this.path = logCreateRequest.path();
+        this.schema = logCreateRequest.schema();
+        this.port = logCreateRequest.port();
         this.clientIp = logCreateRequest.clientIp();
         this.statusCode = logCreateRequest.statusCode();
         this.durationMs = logCreateRequest.durationMs();
@@ -42,6 +46,14 @@ public class Log {
 
     public String getPath() {
         return path;
+    }
+
+    public String getSchema() {
+        return schema;
+    }
+
+    public Long getPort() {
+        return port;
     }
 
     public String getClientIp() {

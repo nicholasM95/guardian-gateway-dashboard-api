@@ -46,6 +46,8 @@ public class LogStreamConsumer implements StreamListener<String, MapRecord<Strin
             String timestamp = data.get("timestamp");
             String method = data.get("method");
             String path = data.get("path");
+            String schema = data.get("schema");
+            Long port =  Long.valueOf(data.get("port"));
             String clientIp = data.get("client_ip");
             String statusCode = data.get("status_code");
             Long durationMs = Long.valueOf(data.get("duration_ms"));
@@ -53,7 +55,8 @@ public class LogStreamConsumer implements StreamListener<String, MapRecord<Strin
             String host = data.get("host");
             String requestStatus = data.get("request_status");
 
-            LogCreateRequest logCreateRequest = new LogCreateRequest(timestamp, method, path, clientIp, statusCode, durationMs, userAgent, host, requestStatus);
+            LogCreateRequest logCreateRequest = new LogCreateRequest(timestamp, method, path, schema, port,
+                    clientIp, statusCode, durationMs, userAgent, host, requestStatus);
             createLogUseCase.createLog(logCreateRequest);
 
         } catch (Exception e) {

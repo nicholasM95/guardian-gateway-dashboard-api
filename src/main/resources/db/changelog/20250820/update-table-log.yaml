@@ -1,0 +1,31 @@
+databaseChangeLog:
+  - changeSet:
+      id: update-table-log
+      comment: update-table-log
+      author: nicholasmeyers
+      changes:
+        - addColumn:
+            tableName: log
+            columns:
+              - column:
+                  name: schema
+                  type: varchar(5)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: port
+                  type: bigint
+                  constraints:
+                    nullable: false
+        - createIndex:
+            indexName: idx_log_schema
+            tableName: log
+            columns:
+              - column:
+                  name: schema
+        - createIndex:
+            indexName: idx_log_port
+            tableName: log
+            columns:
+              - column:
+                  name: port

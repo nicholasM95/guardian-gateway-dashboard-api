@@ -62,11 +62,14 @@ public class LogStreamConsumerTest {
                 map.put("timestamp", "2025-07-28T21:53:33.894196710Z");
                 map.put("method", "POST");
                 map.put("path", "/test");
+                map.put("schema", "https");
+                map.put("port", "443");
                 map.put("client_ip", "1.1.1.1");
                 map.put("status_code", "201");
                 map.put("duration_ms", "4");
                 map.put("user_agent", "Safari");
                 map.put("host", "api.test.be");
+                map.put("request_status", "ALLOWED");
                 return map;
             }
         };

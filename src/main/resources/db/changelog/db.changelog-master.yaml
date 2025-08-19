@@ -3,3 +3,5 @@ databaseChangeLog:
       file: db/changelog/20250728/create-table-log.yaml
   - include:
       file: db/changelog/20250819/update-table-log.yaml
+  - include:
+      file: db/changelog/20250820/update-table-log.yaml

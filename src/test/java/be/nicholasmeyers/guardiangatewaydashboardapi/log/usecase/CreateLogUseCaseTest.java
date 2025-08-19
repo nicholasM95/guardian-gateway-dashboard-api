@@ -24,6 +24,7 @@ public class CreateLogUseCaseTest {
     void givenLogCreateRequest_whenCreateLog_thenVerifyLogSaveIsCalled() {
         // Given
         LogCreateRequest logCreateRequest = new LogCreateRequest("2025-07-28T21:53:33.894196710Z", "POST", "/test",
+                "https", 443L,
                 "1.1.1.1", "201", 4L, "Safari", "api.test.be", "ALLOWED");
 
         // When
@@ -36,6 +37,8 @@ public class CreateLogUseCaseTest {
         assertThat(logCaptor.getValue().getTimestamp()).isEqualTo(1753739613L);
         assertThat(logCaptor.getValue().getMethod()).isEqualTo("POST");
         assertThat(logCaptor.getValue().getPath()).isEqualTo("/test");
+        assertThat(logCaptor.getValue().getSchema()).isEqualTo("https");
+        assertThat(logCaptor.getValue().getPort()).isEqualTo(443);
         assertThat(logCaptor.getValue().getClientIp()).isEqualTo("1.1.1.1");
         assertThat(logCaptor.getValue().getStatusCode()).isEqualTo("201");
         assertThat(logCaptor.getValue().getDurationMs()).isEqualTo(4L);

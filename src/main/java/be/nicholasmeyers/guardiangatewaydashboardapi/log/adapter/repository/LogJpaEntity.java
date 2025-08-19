@@ -34,6 +34,12 @@ public class LogJpaEntity {
     @Column(name = "path", nullable = false, updatable = false)
     private String path;
 
+    @Column(name = "schema", nullable = false, updatable = false)
+    private String schema;
+
+    @Column(name = "port", nullable = false, updatable = false)
+    private Long port;
+
     @Column(name = "client_ip", nullable = false, updatable = false)
     private String clientIp;
 
@@ -65,6 +71,8 @@ public class LogJpaEntity {
         this.timestamp = log.getTimestamp();
         this.method = log.getMethod();
         this.path = log.getPath();
+        this.schema = log.getSchema();
+        this.port = log.getPort();
         this.clientIp = log.getClientIp();
         this.statusCode = log.getStatusCode();
         this.durationMs = log.getDurationMs();
