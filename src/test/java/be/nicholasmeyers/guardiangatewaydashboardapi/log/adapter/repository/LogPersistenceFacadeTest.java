@@ -24,7 +24,7 @@ public class LogPersistenceFacadeTest {
     void givenLog_whenSave_thenLogIsSaved() {
         // Given
         LogCreateRequest logCreateRequest = new LogCreateRequest("2025-07-28T21:53:33.894196710Z", "POST", "/test",
-                "1.1.1.1", "201", 4L, "Safari", "api.test.be");
+                "1.1.1.1", "201", 4L, "Safari", "api.test.be", "ALLOWED");
         Log log = LogFactory.createLog(logCreateRequest);
 
         // When
@@ -32,7 +32,7 @@ public class LogPersistenceFacadeTest {
 
         // Then
         String sql = """
-                    SELECT id, timestamp, method, path, client_ip, status_code, duration_ms, user_agent, host, created_date, last_modified_date
+                    SELECT id, timestamp, method, path, client_ip, status_code, duration_ms, user_agent, host, request_status, created_date, last_modified_date
                     FROM log WHERE client_ip = ?
                     """;
         Map<String, Object> result = jdbcTemplate.queryForMap(sql, "1.1.1.1");
@@ -47,6 +47,7 @@ public class LogPersistenceFacadeTest {
         assertThat(result.get("duration_ms")).isEqualTo(4L);
         assertThat(result.get("user_agent")).isEqualTo("Safari");
         assertThat(result.get("host")).isEqualTo("api.test.be");
+        assertThat(result.get("request_status")).isEqualTo("ALLOWED");
         assertThat(result.get("created_date")).isNotNull();
         assertThat(result.get("last_modified_date")).isNotNull();
     }

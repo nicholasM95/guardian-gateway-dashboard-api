@@ -11,7 +11,7 @@ public class LogFactoryTest {
     void givenLogCreateRequest_whenCreateLog_thenLogCreated() {
         // Given
         LogCreateRequest logCreateRequest = new LogCreateRequest("2025-07-28T21:53:33.894196710Z", "POST", "/test",
-                "1.1.1.1", "201", 4L, "Safari", "api.test.be");
+                "1.1.1.1", "201", 4L, "Safari", "api.test.be", "ALLOWED");
 
         // When
         Log log = LogFactory.createLog(logCreateRequest);
@@ -25,5 +25,6 @@ public class LogFactoryTest {
         assertThat(log.getDurationMs()).isEqualTo(4L);
         assertThat(log.getUserAgent()).isEqualTo("Safari");
         assertThat(log.getHost()).isEqualTo("api.test.be");
+        assertThat(log.getRequestStatus()).isEqualTo("ALLOWED");
     }
 }

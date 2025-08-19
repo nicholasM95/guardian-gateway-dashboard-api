@@ -1,0 +1,21 @@
+databaseChangeLog:
+  - changeSet:
+      id: update-table-log
+      comment: update-table-log
+      author: nicholasmeyers
+      changes:
+        - addColumn:
+            tableName: log
+            columns:
+              - column:
+                  name: request_status
+                  type: varchar(7)
+                  defaultValue: "ALLOWED"
+                  constraints:
+                    nullable: false
+        - createIndex:
+            indexName: idx_log_request_status
+            tableName: log
+            columns:
+              - column:
+                  name: request_status

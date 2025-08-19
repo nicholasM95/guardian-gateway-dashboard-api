@@ -14,6 +14,7 @@ public class Log {
     private final Long durationMs;
     private final String userAgent;
     private final String host;
+    private final String requestStatus;
 
     protected Log(LogCreateRequest logCreateRequest) {
         ZonedDateTime zonedDateTime = ZonedDateTime.parse(logCreateRequest.timestamp());
@@ -25,6 +26,7 @@ public class Log {
         this.durationMs = logCreateRequest.durationMs();
         this.userAgent = logCreateRequest.userAgent();
         this.host = logCreateRequest.host();
+        this.requestStatus = logCreateRequest.requestStatus();
     }
 
     protected void validate() {
@@ -60,5 +62,9 @@ public class Log {
 
     public String getHost() {
         return host;
+    }
+
+    public String getRequestStatus() {
+        return requestStatus;
     }
 }

@@ -49,6 +49,9 @@ public class LogJpaEntity {
     @Column(name = "host", nullable = false, updatable = false)
     private String host;
 
+    @Column(name = "request_status", nullable = false, updatable = false)
+    private String requestStatus;
+
     @CreatedDate
     @Column(name = "created_date", nullable = false, updatable = false)
     private LocalDateTime createdDate;
@@ -67,5 +70,6 @@ public class LogJpaEntity {
         this.durationMs = log.getDurationMs();
         this.userAgent = log.getUserAgent();
         this.host = log.getHost();
+        this.requestStatus = log.getRequestStatus();
     }
 }

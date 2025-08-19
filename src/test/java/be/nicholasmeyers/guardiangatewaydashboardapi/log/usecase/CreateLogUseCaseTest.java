@@ -24,7 +24,7 @@ public class CreateLogUseCaseTest {
     void givenLogCreateRequest_whenCreateLog_thenVerifyLogSaveIsCalled() {
         // Given
         LogCreateRequest logCreateRequest = new LogCreateRequest("2025-07-28T21:53:33.894196710Z", "POST", "/test",
-                "1.1.1.1", "201", 4L, "Safari", "api.test.be");
+                "1.1.1.1", "201", 4L, "Safari", "api.test.be", "ALLOWED");
 
         // When
         createLogUseCase.createLog(logCreateRequest);
@@ -41,5 +41,6 @@ public class CreateLogUseCaseTest {
         assertThat(logCaptor.getValue().getDurationMs()).isEqualTo(4L);
         assertThat(logCaptor.getValue().getUserAgent()).isEqualTo("Safari");
         assertThat(logCaptor.getValue().getHost()).isEqualTo("api.test.be");
+        assertThat(logCaptor.getValue().getRequestStatus()).isEqualTo("ALLOWED");
     }
 }
